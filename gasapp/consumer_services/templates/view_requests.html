@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Service Requests</title>
+</head>
+<body>
+    <h1>Your Service Requests</h1>
+    {% if requests %}
+        <ul>
+        {% for request in requests %}
+            <li>
+                <strong>Request Type:</strong> {{ request.request_type }}<br>
+                <strong>Description:</strong> {{ request.description }}<br>
+                <strong>Status:</strong> {{ request.status }}<br>
+                <strong>Date Submitted:</strong> {{ request.date_submitted }}<br>
+                {% if request.date_resolved %}
+                    <strong>Date Resolved:</strong> {{ request.date_resolved }}<br>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't submitted any service requests yet.</p>
+    {% endif %}
+    <a href="{% url 'submit_request' %}">Submit a New Request</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
